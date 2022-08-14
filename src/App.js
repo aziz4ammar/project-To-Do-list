@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TodoList from './components/TodoList'
 import "./App.css"
+import TodoTask from './components/TodoTask';
 export default class App extends Component {
   state={tab:[
     {
@@ -14,11 +15,20 @@ export default class App extends Component {
     },
   ]
 }
-handledelete = (x) => this.setState({tab:this.state.tab.filter(el=>el.id!=x)});
+handledelete = (x) => this.setState({tab:this.state.tab.filter(el=>el.id!==x)});
 handlecomplete = (x) => this.setState({tab:this.state.tab.map(el=>el.id===x?{...el,isDone:!el.isDone}:el)})
+handleadd = (input) =>{ const newtask = {
+  id:Math.random() ,
+  act:input,
+  isDone:false,
+};
+this.setState({tab:[newtask,...this.state.tab]})};
   render() {
     return (
-      <div><TodoList tasks={this.state.tab} del={this.handledelete} com={this.handlecomplete} /></div>
+      <div>
+        <TodoTask add={this.handleadd}/>
+        <TodoList tasks={this.state.tab} del={this.handledelete} com={this.handlecomplete} />
+      </div>
     )
   }
 }

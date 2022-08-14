@@ -5,7 +5,7 @@ const Todo = ({task,del,com}) => {
     <div className={task.isDone?"complete":""}>
         <h1>{task.act}</h1>
         <button onClick={()=>del(task.id)}>Delete</button>
-        <button onClick={()=>com(task.id)}>{task.isDone?"undo":"complete"}</button>
+        <button onClick={()=>com(task.id)}>{task.isDone?"Undo":"Complete"}</button>
     </div>
     
   )
